@@ -1,0 +1,28 @@
+{
+  "name": "eth-red",
+  "version": "0.0.1",
+  "description": "Ethereum implementation in Node-Red",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lucaszw/eth-red.git"
+  },
+  "keywords": [
+    "ethereum",
+    "node",
+    "red",
+    "iot",
+    "custom",
+    "smart",
+    "contracts"
+  ],
+  "author": "Lucas Zeer, Chris Hajduk",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/Lucaszw/eth-red/issues"
+  },
+  "homepage": "https://github.com/Lucaszw/eth-red#readme"
+}
