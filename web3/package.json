@@ -1,0 +1,19 @@
+{
+  "name": "@eth-red/web3",
+  "version": "0.0.1",
+  "description": "Node-Red Interface for Ethereum and IoT devices",
+  "main": "web3.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "node-red": {
+    "nodes": {
+      "web3": "web3.js"
+    }
+  },
+  "author": "chris hajduk & lucas zeer",
+  "license": "ISC",
+  "dependencies": {
+    "web3": "^1.0.0-beta.23"
+  }
+}
