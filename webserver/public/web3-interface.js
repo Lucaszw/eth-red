@@ -6,14 +6,13 @@ class Web3MqttInterface {
     this.client.onMessageArrived = this.onMessageArrived.bind(this);
     this.client.onConnectionLost = this.onConnectionLost.bind(this);
     this.client.connect({onSuccess: this.onConnect.bind(this)});
+
+    // Keep track of all getter nodes
+    this.getterNodes = new Array();
   }
 
-  readTransaction(payload) {
-    console.log("Reading transaction...");
-    // var contractInterface = JSON.parse(payload.interface);
-    // var contract = window.web3.eth.contract(contractInterface);
-    // var instance = contract.at(payload.address);
-    // instance.get((...args) => {console.log(args)});
+  registerNode(payload) {
+    console.log("Registering Node...", payload);
   }
 
   makeTransaction(payload) {
@@ -25,8 +24,8 @@ class Web3MqttInterface {
 
   onConnect() {
     this.client.subscribe("ethereum/make-transaction");
-    this.client.subscribe("ethereum/read-transaction");
-    console.log("Connected...");
+    this.client.subscrive("ethereum/register-node");
+    setTimeout(this.checkForTransaction.bind(this), 1000);
   }
 
   onMessageArrived(msg) {
@@ -34,8 +33,9 @@ class Web3MqttInterface {
     const payload = JSON.parse(msg.payloadString);
     if (topic == "ethereum/make-transaction")
       this.makeTransaction(payload);
-    if (topic == "ethereum/read-transaction")
-      this.readTransaction(payload);
+    if (topic == "ethereum/register-node")
+      this.registerNode(payload);
+
     // Ensure the topic is
     console.log("Message arrived", topic, payload);
   }

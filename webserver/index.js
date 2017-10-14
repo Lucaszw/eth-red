@@ -1,3 +1,4 @@
+var path = require('path');
 var http = require('http');
 var express = require("express");
 var RED = require("node-red");
@@ -6,7 +7,7 @@ var RED = require("node-red");
 var app = express();
 
 // Add a simple route for static content served from 'public'
-app.use("/",express.static("public"));
+app.use(express.static(path.resolve(__dirname, "public")));
 
 // Create a server
 var server = http.createServer(app);
@@ -26,7 +27,7 @@ app.use(settings.httpAdminRoot,RED.httpAdmin);
 // Serve the http nodes UI from /api
 app.use(settings.httpNodeRoot,RED.httpNode);
 
-server.listen(8000);
+server.listen(8001);
 
 // Start the runtime
 RED.start();
