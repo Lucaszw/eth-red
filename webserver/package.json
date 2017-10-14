@@ -1,0 +1,15 @@
+{
+  "name": "@eth-red/webserver",
+  "version": "0.0.1",
+  "description": "Webserver to launch node-red & communicate with web3",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "chris hajduk and lucas zeer",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2",
+    "node-red": "^0.17.5"
+  }
+}

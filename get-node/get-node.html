@@ -1,0 +1,40 @@
+<script type="text/javascript">
+  console.log("RED", RED);
+
+  RED.nodes.registerType('get-node',{
+      category: 'function',
+      color: '#7dff96',
+      defaults: {
+          name: {value: ""},
+          interface: {value: ""},
+          address: {value: ""}
+      },
+      inputs:1,
+      outputs:1,
+      icon: "file.png",
+      label: function() {
+          return this.name || "get-node";
+      }
+  });
+
+</script>
+
+<script type="text/x-red" data-template-name="get-node">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-interface"><i class="icon-tag"></i> Interface</label>
+        <textarea id="node-input-interface" rows="4" cols="50">
+        </textarea>
+    </div>
+    <div class="form-row">
+        <label for="node-input-address"><i class="icon-tag"></i> Address</label>
+        <input type="text" id="node-input-address" placeholder="Name">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="get-node">
+    <p>Connect to a get-node client</p>
+</script>
