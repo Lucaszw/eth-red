@@ -8,7 +8,7 @@
   },
   "node-red": {
     "nodes": {
-      "set-block": "set-node.js"
+      "set-node": "set-node.js"
     }
   },
   "keywords": [

@@ -4,7 +4,7 @@ var mqtt = require('mqtt')
 var client  = mqtt.connect('mqtt://localhost:1883');
 
 module.exports = function(RED) {
-    function SetBlock(config) {
+    function SetNode(config) {
         RED.nodes.createNode(this,config);
         var node = this;
         node.on('input', function(msg) {
@@ -13,5 +13,5 @@ module.exports = function(RED) {
             node.send(msg);
         });
     }
-    RED.nodes.registerType("set-node",SetBlock);
+    RED.nodes.registerType("set-node",SetNode);
 }

@@ -6,7 +6,19 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "node-red": {
+    "nodes": {
+      "get-node": "get-node.js"
+    }
+  },
+  "keywords": [
+    "EthWaterloo",
+    "Ethereum",
+    "Internet Of Things",
+    "NodeRED",
+    "Web3"
+  ],
+  "author": "chris hajduk & lucas zeer",
   "license": "ISC",
   "dependencies": {
     "lodash": "^4.17.4",
