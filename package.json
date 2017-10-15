@@ -29,6 +29,7 @@
     "@eth-red/get-node": "file:get-node",
     "@eth-red/mqtt-broker": "file:broker",
     "@eth-red/set-node": "file:set-node",
-    "@eth-red/webserver": "file:webserver"
+    "@eth-red/webserver": "file:webserver",
+    "web3": "^0.20.0"
   }
 }
