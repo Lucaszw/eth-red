@@ -32,7 +32,7 @@ The install script will install all necessary components EXCEPT the following:
 
 ## Contributions
 
-Developed By Chris Hajduk & Lucas Zeer as part of EthWaterloo Hackathon.
+Developed By Chris Hajduk & Lucas Zeer as part of EthWaterloo Hackathon (https://ethwaterloo.com/).
 
 Built ontop of:
 
