@@ -12,9 +12,9 @@ var ABI;
 
 module.exports = function(RED) {
     function SetNode(config) {
-        
+
         //Initialize wallet
-        var web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/"));//"https://rpc.ethapi.org:8545"));
+        var web3 = new Web3(new Web3.providers.HttpProvider(config.network));
         web3.eth.accounts.wallet.add(ethwallet.PRIVATE_KEY);
 
         RED.nodes.createNode(this,config);
@@ -54,7 +54,7 @@ module.exports = function(RED) {
             .on('receipt', function(receipt){
                    console.log("Device Contract Address: " + receipt.contractAddress);// contains the new contract address
                    contractAddress = receipt.contractAddress;
-            });      
+            });
         }
     }
     RED.nodes.registerType("set-node",SetNode);
