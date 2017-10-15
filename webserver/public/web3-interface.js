@@ -24,9 +24,8 @@ class Web3MqttInterface {
   registerNode(payload) {
     this.nodes.set(payload.id, payload);
     if (this.nodes.size == 1) {
-      setInterval(this.trackChanges.bind(this), 3000);
+      setInterval(this.trackChanges.bind(this), 1000);
     }
-    console.log("Registering Node...", payload);
   }
 
   trackChanges() {
@@ -34,11 +33,10 @@ class Web3MqttInterface {
       var contractInterface = JSON.parse(node.interface);
       var contract = window.web3.eth.contract(contractInterface);
       var instance = contract.at(node.address);
-      instance.get((err, val) => {
+      instance[node.getter]((err, val) => {
         if (val == null) return;
 
         if (val != node.val) {
-          console.log("Node has been updated:", val);
           node.val = val;
           this.nodes.set(node.id, node);
           var message = new Paho.MQTT.Message(JSON.stringify(node));
@@ -49,23 +47,22 @@ class Web3MqttInterface {
     }
   }
 
-  makeTransaction(payload) {
-      var contractInterface = JSON.parse(payload.interface);
+  makeTransaction(node) {
+      console.log("Making transaction...", node);
+      var contractInterface = JSON.parse(node.interface);
       var contract = window.web3.eth.contract(contractInterface);
-      var instance = contract.at(payload.address);
-      instance.set(`${Date.now()}`, (...args) => {console.log(args)});
+      var instance = contract.at(node.address);
+      console.log(instance[node.setter]);
+
+      instance[node.setter](`${node.payload}`, (...args) => {console.log(args)});
   }
 
   onConnect() {
-    console.log("Subscribing...");
     this.client.subscribe("ethereum/make-transaction");
     this.client.subscribe("ethereum/register-node");
   }
 
   onMessageArrived(msg) {
-    console.log("MSG ARRIVED:::");
-    console.log(msg);
-
     const topic = msg.destinationName;
 
     const payload = tryParsingJSON(msg.payloadString);

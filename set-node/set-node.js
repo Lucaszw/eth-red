@@ -8,6 +8,7 @@ module.exports = function(RED) {
         RED.nodes.createNode(this,config);
         var node = this;
         node.on('input', function(msg) {
+            config.payload = msg.payload;
             const payload = JSON.stringify(config);
             client.publish("ethereum/make-transaction", payload);
             node.send(msg);

@@ -1,5 +1,20 @@
+const fs = require('fs');
 const path = require("path");
 const mosca = require("mosca");
+
+const deleteFolderRecursive = function(path) {
+  if (fs.existsSync(path)) {
+    fs.readdirSync(path).forEach(function(file, index){
+      var curPath = path + "/" + file;
+      if (fs.lstatSync(curPath).isDirectory()) { // recurse
+        deleteFolderRecursive(curPath);
+      } else { // delete file
+        fs.unlinkSync(curPath);
+      }
+    });
+    fs.rmdirSync(path);
+  }
+};
 
 class EthMqttBrocker  {
   /* Simple broker Node-RED */
@@ -14,7 +29,9 @@ class EthMqttBrocker  {
     settings.http  = http;
 
     const db_settings         = new Object();
-    db_settings.path          = path.join(__dirname, "db");
+    const db_path = path.join(__dirname, "db");
+    deleteFolderRecursive(db_path);
+    db_settings.path          = db_path;
     db_settings.subscriptions = 0;
     db_settings.packets       = 0;
 
