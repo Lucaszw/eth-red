@@ -24,5 +24,11 @@
   "bugs": {
     "url": "https://github.com/Lucaszw/eth-red/issues"
   },
-  "homepage": "https://github.com/Lucaszw/eth-red#readme"
+  "homepage": "https://github.com/Lucaszw/eth-red#readme",
+  "dependencies": {
+    "@eth-red/get-node": "file:get-node",
+    "@eth-red/mqtt-broker": "file:broker",
+    "@eth-red/set-node": "file:set-node",
+    "@eth-red/webserver": "file:webserver"
+  }
 }
