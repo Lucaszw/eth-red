@@ -33,3 +33,9 @@ The install script will install all necessary components EXCEPT the following:
 ## Contributions
 
 Developed By Chris Hajduk & Lucas Zeer as part of EthWaterloo Hackathon.
+
+Built ontop of:
+
+Node-RED: https://nodered.org/
+
+Ethereum: https://www.ethereum.org/
