@@ -19,9 +19,12 @@ module.exports = function(RED) {
           client.on('message', (_topic, message) => {
             console.log("received message", _topic);
             if (_topic != topic) return;
+            console.log(message.toString());
 
-            node.send({payload: "UPDATED!!"});
+            const msg = JSON.parse(message.toString());
+            node.send({payload: msg});
           });
+
 
           client.subscribe(topic, undefined, () => {
             console.log("subscribed to : ", topic);

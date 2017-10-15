@@ -31,18 +31,19 @@ class Web3MqttInterface {
 
   trackChanges() {
     for (const [id, node] of this.nodes) {
-      console.log("checking node", id, node);
       var contractInterface = JSON.parse(node.interface);
       var contract = window.web3.eth.contract(contractInterface);
       var instance = contract.at(node.address);
-      instance.get((...args) => {
-        console.log("args", args);
-        if (args[1] != node.val) {
-          console.log("Node has been updated!");
-          node.val = args[1];
+      instance.get((err, val) => {
+        if (val == null) return;
+
+        if (val != node.val) {
+          console.log("Node has been updated:", val);
+          node.val = val;
           this.nodes.set(node.id, node);
-          const topic = `ethereum/node-updated:${node.id}`;
-          this.client.publish(topic, JSON.stringify(node));
+          var message = new Paho.MQTT.Message(JSON.stringify(node));
+          message.destinationName = `ethereum/node-updated:${node.id}`;
+          this.client.send(message);
         }
       });
     }

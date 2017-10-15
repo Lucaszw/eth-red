@@ -1,17 +1,15 @@
 <script type="text/javascript">
-  console.log("RED", RED);
 
   RED.nodes.registerType('set-node',{
       category: 'function',
-      color: '#a6bbcf',
+      color: '#ffb6b6',
       defaults: {
           name: {value: ""},
           interface: {value: ""},
-          address: {value: ""},
-          web3: {value: window.web3}
+          address: {value: ""}
       },
       inputs:1,
-      outputs:1,
+      outputs:0,
       icon: "file.png",
       label: function() {
           return this.name || "set-node";
