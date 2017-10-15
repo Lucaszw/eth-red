@@ -5,18 +5,18 @@ pragma solidity ^0.4.11;
 contract GenericIndicator{
     address public owner;
     mapping(address => bool) private permissions;
-    bool state;
-    event StateChange(address _from, bytes1 _cType, bool _state);
+    string state;
+    event StateChange(address _from, bytes1 _cType, string _state);
     modifier onlyOwner{require(msg.sender == owner);_;}
     modifier onlyAllowed{require(permissions[msg.sender]);_;}
     
     function GenericIndicator() public {owner = msg.sender; permissions[owner] = true;}
     
-    function get() public view returns (bool){
+    function get() public view returns (string){
         return state;
     }
     
-    function set(bool _state) public onlyAllowed{
+    function set(string _state) public onlyAllowed{
             StateChange(msg.sender, 0, _state);
             state = _state;
     }
@@ -30,4 +30,3 @@ contract GenericIndicator{
         return permissions[a];
     }
 }
-
