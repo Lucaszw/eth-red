@@ -48,12 +48,9 @@ class Web3MqttInterface {
   }
 
   makeTransaction(node) {
-      console.log("Making transaction...", node);
       var contractInterface = JSON.parse(node.interface);
       var contract = window.web3.eth.contract(contractInterface);
       var instance = contract.at(node.address);
-      console.log(instance[node.setter]);
-
       instance[node.setter](`${node.payload}`, (...args) => {console.log(args)});
   }
 
