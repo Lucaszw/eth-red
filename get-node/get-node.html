@@ -1,17 +1,44 @@
 <script type="text/javascript">
+
+renderGetOptions = (node) => {
+  const interface = JSON.parse(node.interface);
+  const container = $("#node-input-getter");
+  container.html("");
+  for (const [i, item ] of interface.entries()){
+    const option = $(`
+      <option value="${item.name}" class="list-group-item">
+        ${item.name}
+      </option>`);
+    if (item.outputs.length > 0 && item.inputs.length == 0
+      && item.type == "function") {
+      console.log("APPENDING OPTION!", option);
+      container.append(option);
+    }
+  }
+
+}
+
   RED.nodes.registerType('get-node',{
       category: 'function',
       color: '#7dff96',
       defaults: {
           name: {value: ""},
           interface: {value: ""},
-          address: {value: ""}
+          address: {value: ""},
+          getter: {value: "get"}
       },
       inputs:0,
       outputs:1,
       icon: "file.png",
       label: function() {
           return this.name || "get-node";
+      },
+      oneditprepare: function() {
+        $("#node-input-interface").focusout( () => {
+          this.interface = $("#node-input-interface").val();
+          renderGetOptions(this);
+        });
+        renderGetOptions(this);
       }
   });
 
@@ -30,6 +57,11 @@
     <div class="form-row">
         <label for="node-input-address"><i class="icon-tag"></i> Address</label>
         <input type="text" id="node-input-address" placeholder="Name">
+    </div>
+    <div class="form-row">
+      <label for="node-input-getter"><i class="icon-tag"></i> Getter Method</label>
+      <select id="node-input-getter" name="node-input-getter" form="node-input-getter">
+      </select>
     </div>
 </script>
 
