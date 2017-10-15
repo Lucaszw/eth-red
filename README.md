@@ -4,7 +4,7 @@ Ethereum/Web3 interface for Node-RED.
 
 ## Installation Instructions
 
-The install script will install all necessary components EXCEPT the following:
+1. The install script will install all necessary components EXCEPT the following:
 (please install them manually and globally)
 
 * npm
@@ -16,6 +16,7 @@ The install script will install all necessary components EXCEPT the following:
 > node .
 ```
 
+2. Copy and paste private key into **./eth-red/ethwallet.js**
 ## Getting Started
 
 1. Connect Node-RED nodes to "set-node" & "get-node" accross different node-RED clients:
