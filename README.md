@@ -1,5 +1,6 @@
 # @eth-red
-## Ethereum/Web3 interface for Node-RED
+
+Ethereum/Web3 interface for Node-RED
 
 ## Installation Instructions
 
