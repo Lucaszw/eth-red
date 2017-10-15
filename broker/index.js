@@ -1,5 +1,4 @@
 const path = require("path");
-
 const mosca = require("mosca");
 
 class EthMqttBrocker  {
@@ -14,8 +13,15 @@ class EthMqttBrocker  {
     settings.port  = 1883;
     settings.http  = http;
 
+    const db_settings         = new Object();
+    db_settings.path          = path.join(__dirname, "db");
+    db_settings.subscriptions = 0;
+    db_settings.packets       = 0;
+
+    this.db = new mosca.persistence.LevelUp(db_settings);
     this.settings = settings;
     this.server = new mosca.Server(settings);
+    this.db.wire(this.server);
 
     this.server.on('clientConnected', this.onClientConnected.bind(this));
     this.server.on('published', this.onPublished.bind(this));
