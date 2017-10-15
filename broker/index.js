@@ -49,6 +49,4 @@ class EthMqttBrocker  {
 
 }
 
-if (require.main === module) {
-  const brocker = new EthMqttBrocker();
-}
+const brocker = new EthMqttBrocker();
